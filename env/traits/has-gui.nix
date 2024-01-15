@@ -1,7 +1,6 @@
 { environment, config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    wayfire
     swaylock
     swayidle
     grim
@@ -21,7 +20,7 @@
   services = {
     dbus.enable = true;
     greetd = {
-      enable = false;
+      enable = true;
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd wayfire";
@@ -33,11 +32,18 @@
       enable = true;
       desktopManager = {
         xterm.enable = false;
-	      gnome.enable = true;
       };
-      displayManager = {
-        gdm.enable = true;
-      };
+    };
+  };
+
+  programs = {
+    wayfire = {
+      enable = true;
+      plugins = with pkgs.wayfirePlugins; [
+        wcm
+	wf-shell
+	wayfire-plugins-extra
+      ];
     };
   };
 
