@@ -41,6 +41,7 @@
                   ./env/home.nix
                   ./apps/git.nix
                   ./apps/vscode.nix
+                  ./apps/tweaks.nix
                 ];
               };
             };
