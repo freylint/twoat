@@ -25,15 +25,15 @@
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd wayfire";
-	  user = "gen";
-	};
+          user = "gen";
+        };
       };
     };
     xserver = {
       enable = true;
       desktopManager = {
         xterm.enable = false;
-	gnome.enable = true;
+	      gnome.enable = true;
       };
       displayManager = {
         gdm.enable = true;
