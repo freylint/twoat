@@ -31,7 +31,7 @@
           ./env/traits/has-gui.nix
           ./env/traits/has-gaming.nix
           ./env/traits/amdgpu.nix
-          ./apps/office.nix
+          ./env/apps/office.nix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
