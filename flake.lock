@@ -28,12 +28,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-FH/EyiynoH7g1iD0uIlGA+rzqCySuHt2BHKvzYbIXWU=",
-        "path": "./projects/freyqf",
+        "narHash": "sha256-OvFWNlWocFLKakgtkTkPpt+QVf82srcQzYvCCc9oekk=",
+        "path": "/nix/store/ya2h5bxdbkp37klcqx0yylz70d5bylmd-source/projects/freyqf",
         "type": "path"
       },
       "original": {
-        "path": "./projects/freyqf",
+        "path": "/nix/store/ya2h5bxdbkp37klcqx0yylz70d5bylmd-source/projects/freyqf",
         "type": "path"
       }
     },

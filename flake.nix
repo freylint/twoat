@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     freyqf = {
-      url = "path:./projects/freyqf";
+      url = "./projects/freyqf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -47,8 +47,6 @@
                     ./env/apps/vscode.nix
                     ./env/apps/tweaks.nix
                   ];
-
-                  packages = [ freyqf.freyqf ];
                 };
               };
             }

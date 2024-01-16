@@ -1,5 +1,5 @@
 {
-  description = "Personal Dwarf Fortress quickfort scripts";
+  description = "Personal Dwarf Fortress scripts";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -11,10 +11,10 @@
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
-      perSystem = { config, ... }:
-      {
-        freyqf= {
-          quickfort = nixpkgs.lib.mkDerivation {
+      perSystem = { config, pkgs,... }:
+      rec {
+        freyqf = {
+          quickfort = pkgs.stdenv.mkDerivation ({
             name = "freyqf";
             description = "Personal Dwarf Fortress quickfort scripts";
             src = ./src;
@@ -24,10 +24,9 @@
               mkdir -p $out
               cp -r $src/**/* $out
             '';
-          };
+          });
         };
-
-        defaultPackage = freyqf.quickfort
+        defaultPackage = freyqf.quickfort;
       };
     };
 }
