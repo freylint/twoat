@@ -29,7 +29,7 @@
             ./env/traits/has/terminal.nix
             ./env/traits/has/suid.nix
             ./env/traits/has/gui.nix
-            ./env/traits/has/gaming.nix
+            ./env/traits/has/games.nix
             ./env/traits/is/bootable.nix
             ./env/traits/is/networked.nix
             ./env/traits/is/amdgpu.nix
