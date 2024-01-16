@@ -29,11 +29,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-OvFWNlWocFLKakgtkTkPpt+QVf82srcQzYvCCc9oekk=",
-        "path": "/nix/store/ya2h5bxdbkp37klcqx0yylz70d5bylmd-source/projects/freyqf",
+        "path": "/nix/store/clfqccpz2gdn99449233lxqvbwlss68h-source/projects/freyqf",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/ya2h5bxdbkp37klcqx0yylz70d5bylmd-source/projects/freyqf",
+        "path": "/nix/store/clfqccpz2gdn99449233lxqvbwlss68h-source/projects/freyqf",
         "type": "path"
       }
     },

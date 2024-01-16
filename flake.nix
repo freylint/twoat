@@ -25,16 +25,16 @@
             ./env/configuration.nix
             ./env/users/gen.nix
             ./env/traits/base.nix
-            ./env/traits/has-sound.nix
-            ./env/traits/has-console.nix
-            ./env/traits/bootable.nix
-            ./env/traits/networked.nix
-            ./env/traits/editable.nix
-            ./env/traits/needs-suid.nix
-            ./env/traits/has-gui.nix
-            ./env/traits/has-gaming.nix
-            ./env/traits/amdgpu.nix
+            ./env/traits/has/sound.nix
+            ./env/traits/has/terminal.nix
+            ./env/traits/has/suid.nix
+            ./env/traits/has/gui.nix
+            ./env/traits/has/gaming.nix
+            ./env/traits/is/bootable.nix
+            ./env/traits/is/networked.nix
+            ./env/traits/is/amdgpu.nix
             ./env/apps/office.nix
+            # TODO Add freyqf to system set
             home-manager.nixosModules.home-manager
             {
               home-manager = {
