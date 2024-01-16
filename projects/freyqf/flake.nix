@@ -9,10 +9,10 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
-    flake-parts.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-      in
+    flake-parts.lib.mkFlake { inherit inputs; } {
+    {
+      systems = [ "x86_64-linux" ];
+      perSystem = { config, ... }:
       {
         home.users.gen.packages = {
           freyqf = pkgs.lib.mkDerivation {
@@ -27,6 +27,7 @@
             '';
           };
         };
-      }
-    );
+      };
+    }
+  };
 }
