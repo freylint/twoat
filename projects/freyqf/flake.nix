@@ -1,32 +1,32 @@
 {
-  description = "FreyQF Quickfort Library";
+  description = "Personal Dwarf Fortress quickfort scripts";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/23.11;
-    home-manager.url = github:nix-community/home-manager;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
-    homeConfigurations."freyqf" = {
-      packages = [
-        {
-          pname = "freyqf";
-          version = "1.0";
-          src = ./.;
-          nativeBuildInputs = [ nixpkgs.nix ];
-          installPhase = ''
-            dest="${HOME}/.local/share/Steam/steamapps/common/Dwarf\ Fortress"
-            mkdir -p $dest/
-            cp -r $src/* $dest/
-          '';
-          meta = with nixpkgs.lib; {
-            description = "FreyQF Quickfort library";
-            license = licenses.mit;
+  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
+    flake-parts.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        home.users.gen.packages = {
+          freyqf = pkgs.lib.mkDerivation {
+            name = "freyqf";
+            description = "Personal Dwarf Fortress quickfort scripts";
+            src = ./src;
+            phases = [ "installPhase" ];
+
+            installPhase = ''
+              mkdir -p $out
+              cp -r $src/**/* $out
+            '';
           };
-        }
-      ];
-    };
-
-    defaultPackage = self.homeConfigurations."freyqf";
-  };
+        };
+      }
+    );
 }

@@ -7,9 +7,13 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    freyqf = {
+      url = "path:./projects/freyqf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, freyqf, ... }@inputs: 
   let
     inherit (self) outputs;
   in {
@@ -42,6 +46,10 @@
                   ./env/apps/git.nix
                   ./env/apps/vscode.nix
                   ./env/apps/tweaks.nix
+                ];
+
+                packages = [
+                  freyqf.freyqf
                 ];
               };
             };
