@@ -10,12 +10,11 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-    {
       systems = [ "x86_64-linux" ];
       perSystem = { config, ... }:
       {
         home.users.gen.packages = {
-          freyqf = pkgs.lib.mkDerivation {
+          freyqf = nixpkgs.lib.mkDerivation {
             name = "freyqf";
             description = "Personal Dwarf Fortress quickfort scripts";
             src = ./src;
@@ -28,6 +27,5 @@
           };
         };
       };
-    }
-  };
+    };
 }

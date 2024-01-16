@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   programs = {
     home-manager.enable = true;
     foot = {
@@ -11,9 +10,7 @@
           font = "Fira Code:size=11";
           dpi-aware = "yes";
         };
-        mouse = {
-          hide-when-typing = "yes";
-        };
+        mouse = { hide-when-typing = "yes"; };
       };
     };
   };
@@ -22,10 +19,6 @@
     username = "gen";
     homeDirectory = "/home/gen";
     stateVersion = "23.11";
-    packages = with pkgs; [
-      fira-code
-      neovim
-      firefox
-    ];
+    packages = with pkgs; [ fira-code neovim firefox ];
   };
 }

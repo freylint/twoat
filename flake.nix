@@ -13,49 +13,47 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, freyqf, ... }@inputs: 
-  let
-    inherit (self) outputs;
-  in {
-    nixosConfigurations = {
-      "gdw" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-	      specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./machine/gdw.nix
-	        ./env/configuration.nix
-          ./env/users/gen.nix
-          ./env/traits/base.nix
-          ./env/traits/has-sound.nix
-          ./env/traits/has-console.nix
-          ./env/traits/bootable.nix
-          ./env/traits/networked.nix
-          ./env/traits/editable.nix
-          ./env/traits/needs-suid.nix
-          ./env/traits/has-gui.nix
-          ./env/traits/has-gaming.nix
-          ./env/traits/amdgpu.nix
-          ./env/apps/office.nix
-          home-manager.nixosModules.home-manager {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.gen = {config, pkgs, ...}:{
-                imports = [
-                  ./env/home.nix
-                  ./env/apps/git.nix
-                  ./env/apps/vscode.nix
-                  ./env/apps/tweaks.nix
-                ];
+  outputs = { self, nixpkgs, home-manager, freyqf, ... }@inputs:
+    let inherit (self) outputs;
+    in {
+      nixosConfigurations = {
+        "gdw" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./machine/gdw.nix
+            ./env/configuration.nix
+            ./env/users/gen.nix
+            ./env/traits/base.nix
+            ./env/traits/has-sound.nix
+            ./env/traits/has-console.nix
+            ./env/traits/bootable.nix
+            ./env/traits/networked.nix
+            ./env/traits/editable.nix
+            ./env/traits/needs-suid.nix
+            ./env/traits/has-gui.nix
+            ./env/traits/has-gaming.nix
+            ./env/traits/amdgpu.nix
+            ./env/apps/office.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.gen = { config, pkgs, ... }: {
+                  imports = [
+                    ./env/home.nix
+                    ./env/apps/git.nix
+                    ./env/apps/vscode.nix
+                    ./env/apps/tweaks.nix
+                  ];
 
-                packages = [
-                  freyqf.freyqf
-                ];
+                  packages = [ freyqf.freyqf ];
+                };
               };
-            };
-          }
-        ];
+            }
+          ];
+        };
       };
     };
-  };
 }
