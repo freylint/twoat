@@ -39,9 +39,9 @@
               users.gen = {config, pkgs, ...}:{
                 imports = [
                   ./env/home.nix
-                  ./apps/git.nix
-                  ./apps/vscode.nix
-                  ./apps/tweaks.nix
+                  ./env/apps/git.nix
+                  ./env/apps/vscode.nix
+                  ./env/apps/tweaks.nix
                 ];
               };
             };
