@@ -21,19 +21,24 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
           modules = [
-            ./machine/gdw.nix
-            ./env/configuration.nix
-            ./env/users/gen.nix
-            ./env/traits/base.nix
-            ./env/traits/has/sound.nix
-            ./env/traits/has/terminal.nix
-            ./env/traits/has/suid.nix
-            ./env/traits/has/gui.nix
-            ./env/traits/has/games.nix
-            ./env/traits/is/bootable.nix
-            ./env/traits/is/networked.nix
-            ./env/traits/is/amdgpu.nix
-            ./env/apps/office.nix
+            {
+              networking.hostName = "gdw";
+              time.timeZone = "America/New_York";
+
+              system.stateVersion = "23.11";
+            }
+            ./os/machine/gdw.nix
+            ./os/env/users/gen.nix
+            ./os/env/traits/base.nix
+            ./os/env/traits/has/sound.nix
+            ./os/env/traits/has/terminal.nix
+            ./os/env/traits/has/suid.nix
+            ./os/env/traits/has/gui.nix
+            ./os/env/traits/has/games.nix
+            ./os/env/traits/is/bootable.nix
+            ./os/env/traits/is/networked.nix
+            ./os/env/traits/is/amdgpu.nix
+            ./os/env/apps/office.nix
             # TODO Add freyqf to system set
             home-manager.nixosModules.home-manager
             {
@@ -42,10 +47,10 @@
                 useUserPackages = true;
                 users.gen = { config, pkgs, ... }: {
                   imports = [
-                    ./env/home.nix
-                    ./env/apps/git.nix
-                    ./env/apps/vscode.nix
-                    ./env/apps/tweaks.nix
+                    ./os/home.nix
+                    ./os/apps/git.nix
+                    ./os/apps/vscode.nix
+                    ./os/apps/tweaks.nix
                   ];
                 };
               };
