@@ -13,8 +13,8 @@
       systems = [ "x86_64-linux" ];
       perSystem = { config, ... }:
       {
-        home.users.gen.packages = {
-          freyqf = nixpkgs.lib.mkDerivation {
+        freyqf= {
+          quickfort = nixpkgs.lib.mkDerivation {
             name = "freyqf";
             description = "Personal Dwarf Fortress quickfort scripts";
             src = ./src;
@@ -26,6 +26,8 @@
             '';
           };
         };
+
+        defaultPackage = freyqf.quickfort
       };
     };
 }
