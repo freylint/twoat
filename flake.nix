@@ -28,17 +28,17 @@
               system.stateVersion = "23.11";
             }
             ./os/machine/gdw.nix
-            ./os/env/users/gen.nix
-            ./os/env/traits/base.nix
-            ./os/env/traits/has/sound.nix
-            ./os/env/traits/has/terminal.nix
-            ./os/env/traits/has/suid.nix
-            ./os/env/traits/has/gui.nix
-            ./os/env/traits/has/games.nix
-            ./os/env/traits/is/bootable.nix
-            ./os/env/traits/is/networked.nix
-            ./os/env/traits/is/amdgpu.nix
-            ./os/env/apps/office.nix
+            ./os/users/gen.nix
+            ./os/env/base.nix
+            ./os/env/has/sound.nix
+            ./os/env/has/terminal.nix
+            ./os/env/has/suid.nix
+            ./os/env/has/gui.nix
+            ./os/env/has/games.nix
+            ./os/env/is/bootable.nix
+            ./os/env/is/networked.nix
+            ./os/env/is/amdgpu.nix
+            ./os/apps/office.nix
             # TODO Add freyqf to system set
             home-manager.nixosModules.home-manager
             {
