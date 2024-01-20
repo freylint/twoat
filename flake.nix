@@ -13,27 +13,13 @@
     nixosConfigurations = {
       gdw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs home-manager; };
         modules = [
-          ({
-            networking.hostName = "gdw";
-            time.timeZone = "America/New_York";
-            system.stateVersion = "23.11";
-            imports = [
-              home-manager.nixosModules.home-manager
-            ];
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.gen.home.stateVersion = "23.11";
-            };
-          })
+          ./os/env/base.nix
           ./os/machine/gdw.nix
           ./os/machine/bootable.nix
           ./os/machine/networked.nix
           ./os/machine/amdgpu.nix
-          ./os/users/gen.nix
-          ./os/env/base.nix
           ./os/env/sound.nix
           ./os/env/suid.nix
           ./os/env/gui.nix
