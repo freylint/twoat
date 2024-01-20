@@ -9,19 +9,17 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: let
-    trait = import ./os/lib/traitlib.nix { inherit self home-manager; };
-  in {
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       gdw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          {
+          ({
             networking.hostName = "gdw";
             time.timeZone = "America/New_York";
             system.stateVersion = "23.11";
-          }
+          })
           ./os/machine/gdw.nix
           ./os/machine/bootable.nix
           ./os/machine/networked.nix
@@ -33,18 +31,17 @@
           ./os/env/gui.nix
           ./os/env/games.nix
           ./os/apps/office.nix
-
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users.gen = { config, pkgs, ... }: {
                 home.stateVersion = "23.11";
-                imports = [ 
-                  ./os/apps/git.nix
+                imports = [
                   ./os/apps/tweaks.nix
+                  ./os/apps/git.nix
                   ./os/apps/vscode.nix
-                ];
+                ]; 
               };
             };
           }
