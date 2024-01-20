@@ -9,38 +9,46 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let 
-      inherit (self) outputs;
-      tlib = import ./os/lib/traitlib.nix { inherit home-manager; };
-    in {
-      nixosConfigurations = {
-        "gdw" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            {
-              networking.hostName = "gdw";
-              time.timeZone = "America/New_York";
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: let
+    trait = import ./os/lib/traitlib.nix { inherit self home-manager; };
+  in {
+    nixosConfigurations = {
+      gdw = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          {
+            networking.hostName = "gdw";
+            time.timeZone = "America/New_York";
+            system.stateVersion = "23.11";
+          }
+          ./os/machine/gdw.nix
+          ./os/machine/bootable.nix
+          ./os/machine/networked.nix
+          ./os/machine/amdgpu.nix
+          ./os/users/gen.nix
+          ./os/env/base.nix
+          ./os/env/sound.nix
+          ./os/env/suid.nix
+          ./os/env/gui.nix
+          ./os/env/games.nix
+          ./os/apps/office.nix
 
-              system.stateVersion = "23.11";
-            }
-            ./os/machine/gdw.nix
-            ./os/machine/bootable.nix
-            ./os/machine/networked.nix
-            ./os/machine/amdgpu.nix
-            ./os/users/gen.nix
-            ./os/env/base.nix
-            ./os/env/sound.nix
-            ./os/env/suid.nix
-            ./os/env/gui.nix
-            ./os/env/games.nix
-            ./os/apps/office.nix
-            (tlib.hMantoOs "./apps/git.nix")
-            (tlib.hMantoOs "./apps/tweaks.nix")
-            (tlib.hMantoOs "./apps/vscode.nix")
-          ];
-        };
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.gen = { config, pkgs, ... }: {
+                imports = [ 
+                  ./apps/git.nix
+                  ./apps/tweaks.nix
+                  ./apps/vscode.nix
+                ];
+              };
+            };
+          }
+        ];
       };
     };
+  };
 }
