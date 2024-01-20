@@ -7,14 +7,12 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    freyqf = {
-      url = "./projects/freyqf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, freyqf, ... }@inputs:
-    let inherit (self) outputs;
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let 
+      inherit (self) outputs;
+      tlib = import ./os/lib/traitlib.nix { inherit home-manager; };
     in {
       nixosConfigurations = {
         "gdw" = nixpkgs.lib.nixosSystem {
@@ -28,33 +26,19 @@
               system.stateVersion = "23.11";
             }
             ./os/machine/gdw.nix
+            ./os/machine/bootable.nix
+            ./os/machine/networked.nix
+            ./os/machine/amdgpu.nix
             ./os/users/gen.nix
             ./os/env/base.nix
-            ./os/env/has/sound.nix
-            ./os/env/has/terminal.nix
-            ./os/env/has/suid.nix
-            ./os/env/has/gui.nix
-            ./os/env/has/games.nix
-            ./os/env/is/bootable.nix
-            ./os/env/is/networked.nix
-            ./os/env/is/amdgpu.nix
+            ./os/env/sound.nix
+            ./os/env/suid.nix
+            ./os/env/gui.nix
+            ./os/env/games.nix
             ./os/apps/office.nix
-            # TODO Add freyqf to system set
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.gen = { config, pkgs, ... }: {
-                  imports = [
-                    ./os/home.nix
-                    ./os/apps/git.nix
-                    ./os/apps/vscode.nix
-                    ./os/apps/tweaks.nix
-                  ];
-                };
-              };
-            }
+            (tlib.hMantoOs "./apps/git.nix")
+            (tlib.hMantoOs "./apps/tweaks.nix")
+            (tlib.hMantoOs "./apps/vscode.nix")
           ];
         };
       };

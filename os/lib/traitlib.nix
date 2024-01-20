@@ -1,13 +1,13 @@
-{ lib, home-manager, ... }:
+{ home-manager, ... }:
+
 {
-  # Converts a home-manager module to an OS module.
-  hMantoOsMod = modulePath: {
-    inherit outputs;
+  # Converts a home manager module to an OS module.
+  hMantoOs = modulePath: {
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
       users.gen = { config, pkgs, ... }: {
-        imports = [ import modulePath];
+        imports = [ import modulePath ];
       };
     };
   };
