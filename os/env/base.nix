@@ -3,7 +3,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [
-    vim
+    neovim
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
