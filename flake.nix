@@ -39,10 +39,11 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.gen = { config, pkgs, ... }: {
+                home.stateVersion = "23.11";
                 imports = [ 
-                  ./apps/git.nix
-                  ./apps/tweaks.nix
-                  ./apps/vscode.nix
+                  ./os/apps/git.nix
+                  ./os/apps/tweaks.nix
+                  ./os/apps/vscode.nix
                 ];
               };
             };
