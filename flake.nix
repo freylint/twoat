@@ -19,6 +19,14 @@
             networking.hostName = "gdw";
             time.timeZone = "America/New_York";
             system.stateVersion = "23.11";
+            imports = [
+              home-manager.nixosModules.home-manager
+            ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.gen.home.stateVersion = "23.11";
+            };
           })
           ./os/machine/gdw.nix
           ./os/machine/bootable.nix
@@ -31,20 +39,9 @@
           ./os/env/gui.nix
           ./os/env/games.nix
           ./os/apps/office.nix
-          home-manager.nixosModules.home-manager {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.gen = { config, pkgs, ... }: {
-                home.stateVersion = "23.11";
-                imports = [
-                  ./os/apps/tweaks.nix
-                  ./os/apps/git.nix
-                  ./os/apps/vscode.nix
-                ]; 
-              };
-            };
-          }
+          ./os/apps/git.nix
+          ./os/apps/tweaks.nix
+          ./os/apps/vscode.nix
         ];
       };
     };

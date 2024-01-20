@@ -2,33 +2,35 @@
 
 { environment, pkgs, config, home-manager, ... }:
 {
-  home.packages = with pkgs; [ dconf ];
-  dconf.settings = {
-    "org/gnome/desktop/background" = {
-      picture-uri-dark = "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
+  home-manager.users.gen = {
+    home.packages = with pkgs; [ dconf ];
+    dconf.settings = {
+      "org/gnome/desktop/background" = {
+        picture-uri-dark = "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
+      };
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
     };
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome.gnome-themes-extra;
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Adwaita-dark";
+        package = pkgs.gnome.gnome-themes-extra;
+      };
     };
-  };
 
-  qt = {
-    enable = true;
-    platformTheme = "gtk3";
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
+    qt = {
+      enable = true;
+      platformTheme = "gtk3";
+      style = {
+        name = "adwaita-dark";
+        package = pkgs.adwaita-qt;
+      };
     };
-  };
 
-  #systemd.user.sessionVariables = config.home-manager.users.gen.home.sessionVariables;
+    #systemd.user.sessionVariables = config.home-manager.users.gen.home.sessionVariables;
+  };
 
 }
