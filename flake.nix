@@ -2,15 +2,14 @@
   description = "Personal NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    unstable.url = "github:nixos/nixpkgs-channels/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs-channels/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       gdw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -29,11 +28,6 @@
           ./os/apps/git.nix
           ./os/apps/tweaks.nix
           ./os/apps/vscode.nix
-          ({ config, pkgs, ... }: {
-            environment.systemPackages = [
-              unstable.legacyPackages."x86_64-linux".hello
-            ];
-          })
         ];
       };
     };
