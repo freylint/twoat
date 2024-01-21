@@ -2,7 +2,7 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "unstable";
+  system.stateVersion = "23.11";
 
   networking.hostName = "gdw";
   time.timeZone = "America/New_York";
@@ -25,7 +25,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.gen.home.stateVersion = "unstable";
+    users.gen.home.stateVersion = "23.11";
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
