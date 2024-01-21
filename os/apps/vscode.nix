@@ -14,7 +14,7 @@
         github.copilot-chat
         piousdeer.adwaita-theme
         mechatroner.rainbow-csv
-        grapecity.gc-excelviewer
+        editorconfig.editorconfig
       ];
 
       userSettings = {
