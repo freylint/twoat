@@ -14,6 +14,7 @@
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
     neovim
+    firefox
   ];
 
   users.users.gen = {
