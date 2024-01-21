@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, ... }: {
     nixosConfigurations = {
       gdw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -29,6 +29,11 @@
           ./os/apps/git.nix
           ./os/apps/tweaks.nix
           ./os/apps/vscode.nix
+          ({ config, pkgs, ... }: {
+            environment.systemPackages = [
+              unstable.legacyPackages."x86_64-linux".hello
+            ];
+          })
         ];
       };
     };
