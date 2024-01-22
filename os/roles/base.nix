@@ -1,5 +1,5 @@
 { nix, pkgs, inputs, ... }: let
-  inherit (inputs) home-manager nur;
+  inherit (inputs) home-manager nur sops-nix;
 in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs = {
@@ -10,6 +10,7 @@ in {
 
   imports = [
     home-manager.nixosModules.home-manager
+    sops-nix.nixosModules.sops
     ../components/bootable.nix
   ];
 
