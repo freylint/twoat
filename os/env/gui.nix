@@ -11,6 +11,7 @@
     wdisplays
 
     gnome3.adwaita-icon-theme
+    helvum
 
     dbus
     glib
@@ -59,12 +60,12 @@
     TTYVTDisallocate = true;
   };
 
-
   security.pam = { 
     services.swaylock = {};
     loginLimits = [
       { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
     ];
   };
+
 
 }
