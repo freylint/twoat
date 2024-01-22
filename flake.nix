@@ -25,6 +25,7 @@
           ./os/env/suid.nix
           ./os/env/gui.nix
           ./os/env/games.nix
+          ./os/env/virt.nix
           ./os/apps/office.nix
           ./os/apps/git.nix
           ./os/apps/tweaks.nix

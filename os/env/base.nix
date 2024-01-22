@@ -22,7 +22,7 @@
   users.users.gen = {
     isNormalUser = true;
     initialPassword = "correcthorsebatterystaple";
-    extraGroups = [ "wheel" "seat" "video" "audio" ];
+    extraGroups = [ "wheel" "seat" "video" "audio" "libvirtd" ];
   };
 
   home-manager = {
