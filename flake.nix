@@ -24,6 +24,7 @@
           inputs.sops-nix.nixosModules.sops
           ./os/machine/gdw.nix
           ./os/roles/base.nix
+          ./os/roles/desktop.nix
           ./os/roles/dev.nix
           ./os/roles/games.nix
           ./os/components/amdgpu.nix
