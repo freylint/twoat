@@ -26,14 +26,7 @@
           ./os/roles/base.nix
           ./os/roles/dev.nix
           ./os/roles/games.nix
-          ./os/components/bootable.nix
-          ./os/components/networked.nix
           ./os/components/amdgpu.nix
-          ./os/components/sound.nix
-          ./os/components/gui.nix
-          ./os/components/office.nix
-          ./os/components/tweaks.nix
-          ./os/components/web.nix
           ./os/components/zabbix.nix
         ];
       };

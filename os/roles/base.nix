@@ -8,9 +8,9 @@ in {
   };
   system.stateVersion = "23.11";
 
-
   imports = [
     home-manager.nixosModules.home-manager
+    ../components/bootable.nix
   ];
 
   environment.variables.EDITOR = "nvim";
