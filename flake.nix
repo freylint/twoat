@@ -22,22 +22,19 @@
             time.timeZone = "America/New_York";
           })
           inputs.sops-nix.nixosModules.sops
-          ./os/env/base.nix
           ./os/machine/gdw.nix
           ./os/machine/bootable.nix
           ./os/machine/networked.nix
           ./os/machine/amdgpu.nix
-          ./os/env/sound.nix
-          ./os/env/suid.nix
-          ./os/env/gui.nix
-          ./os/env/games.nix
-          ./os/env/virt.nix
-          ./os/apps/office.nix
-          ./os/apps/git.nix
-          ./os/apps/tweaks.nix
-          ./os/apps/vscode.nix
-          ./os/apps/web.nix
-          ./os/apps/zabbix.nix
+          ./os/roles/base.nix
+          ./os/roles/dev.nix
+          ./os/roles/games.nix
+          ./os/components/sound.nix
+          ./os/components/gui.nix
+          ./os/components/office.nix
+          ./os/components/tweaks.nix
+          ./os/components/web.nix
+          ./os/components/zabbix.nix
         ];
       };
     };
