@@ -1,7 +1,10 @@
-{ nix, pkgs, home-manager, ... }:
+{ nix, pkgs, inputs, home-manager, ... }:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ inputs.nur.overlay ];
+  };
   system.stateVersion = "23.11";
 
   networking.hostName = "gdw";
