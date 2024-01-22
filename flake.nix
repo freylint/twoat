@@ -21,6 +21,7 @@
             networking.hostName = "gdw";
             time.timeZone = "America/New_York";
           })
+          inputs.sops-nix.nixosModules.sops
           ./os/env/base.nix
           ./os/machine/gdw.nix
           ./os/machine/bootable.nix
