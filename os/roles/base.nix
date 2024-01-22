@@ -13,6 +13,13 @@ in {
     ../components/bootable.nix
   ];
 
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    # TODO support multiple users
+    age.keyFile = "/home/gen/.config/sops/age/keys.txt";
+  };
+
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
     neovim
