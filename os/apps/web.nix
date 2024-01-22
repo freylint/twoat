@@ -1,5 +1,5 @@
 { config, pkgs, inputs, ... }: let 
-  inherit (inputs) nixpkgs home-manager;
+  inherit (inputs) nixpkgs home-manager nur;
   inherit (config) allowUnfree;
 in 
 {
@@ -17,6 +17,10 @@ in
           settings = {
             "browser.startup.homepage" = "about:blank";
           };
+          extensions = with nur.repos.rycee.firefox-addons; [
+            ublock-origin
+            bitwarden
+          ];
         };
       };
     };
