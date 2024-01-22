@@ -1,10 +1,10 @@
-{ nix, pkgs, home-manager, nur, ... }:
+{ nix, pkgs, inputs, ... }:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
-      nur.overlay
+      inputs.nur.overlay
     ];
   };
   system.stateVersion = "23.11";
@@ -13,8 +13,8 @@
   time.timeZone = "America/New_York";
 
   imports = [
-    home-manager.nixosModules.home-manager
-    nur.hmModules.nur
+    inputs.home-manager.nixosModules.home-manager
+    inputs.nur.hmModules.nur
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -29,10 +29,11 @@
     extraGroups = [ "wheel" "seat" "video" "audio" ];
   };
 
-  home-manager = {
+  inputs.home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     users.gen.home.stateVersion = "23.11";
+    extraSpecialArgs = { inherit inputs; };
   };
 
   i18n.defaultLocale = "en_US.UTF-8";

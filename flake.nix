@@ -7,14 +7,16 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = github:nix-community/nur;
+    nur = {
+      url = github:nix-community/nur;
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nur, ... }: {
+  outputs = inputs@{ self, ... }: {
     nixosConfigurations = {
-      gdw = nixpkgs.lib.nixosSystem {
+      gdw = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs nixpkgs home-manager nur; };
+        specialArgs = { inherit inputs; };
         modules = [
           ./os/env/base.nix
           ./os/machine/gdw.nix

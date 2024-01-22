@@ -1,5 +1,6 @@
-{ programs, config, nur, ... }:
-{
+{ programs, config, inputs, ... }: let
+  addons = inputs.nur.repos.rycee.firefox-addons;
+in {
   home-manager.users.gen = {
     programs = {
       firefox = {
@@ -9,7 +10,7 @@
           name = "general";
           isDefault = true;
           bookmarks = { };
-          extensions = with nur.repos.rycee.firefox-addons; [
+          extensions = with addons; [
             ublock-origin
             bitwarden
           ];
