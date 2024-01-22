@@ -15,7 +15,6 @@
         piousdeer.adwaita-theme
         mechatroner.rainbow-csv
         editorconfig.editorconfig
-        #dendron.dendron
       ];
 
       userSettings = {
