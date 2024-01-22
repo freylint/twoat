@@ -6,7 +6,7 @@
     grim
     wl-clipboard
 
-    foot
+    cosmic-term
     wofi
     wdisplays
 
