@@ -28,6 +28,7 @@
           ./os/apps/git.nix
           ./os/apps/tweaks.nix
           ./os/apps/vscode.nix
+          ./os/apps/web.nix
         ];
       };
     };
