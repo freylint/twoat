@@ -16,7 +16,7 @@ in
           id = 0;
           name = "default";
           settings = {
-            "browser.startup.homepage" = "about:blank";
+            "browser.startup.homepage" = "­newtab.about-scheme";
           };
           extensions = with firefox-addons; [
             ublock-origin
