@@ -1,5 +1,7 @@
-{ environment, config, pkgs, ... }:
-{
+{ environment, config, pkgs, inputs, ... }: let
+  inherit (inputs) home-manager;
+in {
+  # TODO make cosmic-files the default file manager
   environment.systemPackages = with pkgs; [
     swaylock
     swayidle
@@ -7,6 +9,8 @@
     wl-clipboard
 
     cosmic-term
+    cosmic-files
+
     wofi
     wdisplays
 
@@ -47,7 +51,6 @@
       ];
     };
   };
-
 
   # Prevent greetd from spamming dmesg
   systemd.services.greetd.serviceConfig = {
