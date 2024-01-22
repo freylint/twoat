@@ -36,6 +36,9 @@ in {
     useGlobalPkgs = true;
     useUserPackages = true;
     users.gen.home.stateVersion = "23.11";
+    sharedModules = [
+      sops-nix.homeManagerModules.sops
+    ];
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
