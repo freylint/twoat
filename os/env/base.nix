@@ -1,4 +1,4 @@
-{ nix, pkgs, home-manager, ... }:
+{ nix, pkgs, home-manager, nur, ... }:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
@@ -9,6 +9,7 @@
 
   imports = [
     home-manager.nixosModules.home-manager
+    nur.hmModules.nur
   ];
 
   environment.variables.EDITOR = "nvim";
