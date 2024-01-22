@@ -16,6 +16,10 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs home-manager; };
         modules = [
+          ({
+            networking.hostName = "gdw";
+            time.timeZone = "America/New_York";
+          })
           ./os/env/base.nix
           ./os/machine/gdw.nix
           ./os/machine/bootable.nix

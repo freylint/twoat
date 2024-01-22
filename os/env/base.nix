@@ -1,14 +1,13 @@
-{ nix, pkgs, inputs, home-manager, ... }:
-{
+{ nix, pkgs, inputs, ... }: let
+  inherit (inputs) home-manager nur;
+in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [ inputs.nur.overlay ];
+    overlays = [ nur.overlay ];
   };
   system.stateVersion = "23.11";
 
-  networking.hostName = "gdw";
-  time.timeZone = "America/New_York";
 
   imports = [
     home-manager.nixosModules.home-manager
