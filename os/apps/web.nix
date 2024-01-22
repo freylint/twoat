@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }: let 
   inherit (inputs) nixpkgs home-manager nur;
   inherit (config) allowUnfree;
-  firefox-addons = nur.repos.rycee.firefox-addons;
+  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
 in 
 {
   home-manager.users.gen = {
