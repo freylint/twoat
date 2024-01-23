@@ -9,7 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix.url = "github:Mic92/sops-nix";
-    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
