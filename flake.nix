@@ -30,7 +30,6 @@
           ./os/roles/games.nix
           ./os/roles/comms.nix
           ./os/components/amdgpu.nix
-          ./os/components/zabbix-srv.nix
           ./os/components/zabbix-agent.nix
       ];
 
@@ -42,6 +41,7 @@
         })
         ./os/roles/base.nix
         ./os/components/zabbix-srv.nix
+        ./os/components/zabbix-agent.nix
       ];
     };
   in {
