@@ -28,6 +28,7 @@
           ./os/roles/desktop.nix
           ./os/roles/dev.nix
           ./os/roles/games.nix
+          ./os/roles/comms.nix
           ./os/components/amdgpu.nix
           ./os/components/zabbix-srv.nix
           ./os/components/zabbix-agent.nix
