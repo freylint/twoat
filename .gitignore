@@ -1,3 +1,4 @@
 # Build artifacts
 result/
 result
+**/*.qcow2
