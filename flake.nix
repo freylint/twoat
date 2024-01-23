@@ -15,12 +15,9 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations = {
-      gdw = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
+  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, ... }: rec {
+    hostModules = {
+      gdw = [
           ({
             networking.hostName = "gdw";
             time.timeZone = "America/New_York";
@@ -32,7 +29,14 @@
           ./os/roles/games.nix
           ./os/components/amdgpu.nix
           ./os/components/zabbix.nix
-        ];
+      ];
+    };
+
+    nixosConfigurations = {
+      gdw = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = hostModules.gdw;
       };
     };
   };
