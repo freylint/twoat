@@ -1,4 +1,4 @@
-{ nix, pkgs, inputs, ... }: let
+{ config, nix, pkgs, inputs, ... }: let
   inherit (inputs) home-manager nur sops-nix;
 in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -14,12 +14,15 @@ in {
     ../components/bootable.nix
   ];
 
+  # TODO Move sops configuration into module
   sops = {
-    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     # TODO support multiple users
     age.keyFile = "/home/gen/.config/sops/age/keys.txt";
   };
+
+  sops.secrets."users/gen" = {};
 
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
@@ -28,7 +31,7 @@ in {
 
   users.users.gen = {
     isNormalUser = true;
-    initialPassword = "correcthorsebatterystaple";
+    hashedPasswordFile = config.sops.secrets."users/gen".path;
     extraGroups = [ "wheel" "seat" "video" "audio" "libvirtd" ];
   };
 
