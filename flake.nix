@@ -15,7 +15,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, ... }: rec {
+  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, ... }: let 
     hostModules = {
       # General purpose desktop workstation
       gdw = [
@@ -44,6 +44,7 @@
         ./os/components/zabbix-srv.nix
       ];
     };
+  in {
 
     nixosConfigurations = {
       gdw = nixpkgs.lib.nixosSystem {
