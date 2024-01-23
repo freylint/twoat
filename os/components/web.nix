@@ -15,6 +15,21 @@ in
         default = {
           id = 0;
           name = "default";
+          bookmarks = [
+            {
+              name = "ClosetBox";
+              url = "https://192.168.1.250:8006";
+            }
+          ];
+          extensions = with firefox-addons; [
+            ublock-origin
+            bitwarden
+            firenvim
+            darkreader
+            localcdn
+            sponsorblock
+            unpaywall
+          ];
           settings = {
             "browser.disableResetPrompt" = true;
             "browser.download.panel.shown" = true;
@@ -27,15 +42,6 @@ in
             "privacy.trackingprotection.enabled" = true;
             "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
           };
-          extensions = with firefox-addons; [
-            ublock-origin
-            bitwarden
-            firenvim
-            darkreader
-            localcdn
-            sponsorblock
-            unpaywall
-          ];
         };
       };
     };
