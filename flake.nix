@@ -17,6 +17,7 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, ... }: rec {
     hostModules = {
+      # General purpose desktop workstation
       gdw = [
           ({
             networking.hostName = "gdw";
@@ -31,6 +32,16 @@
           ./os/components/zabbix-srv.nix
           ./os/components/zabbix-agent.nix
       ];
+
+      # General purpose home lab server
+      ghl = [
+        ({
+          networking.hostName = "ghl";
+          time.timeZone = "America/New_York";
+        })
+        ./os/roles/base.nix
+        ./os/components/zabbix-srv.nix
+      ];
     };
 
     nixosConfigurations = {
@@ -38,6 +49,14 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = hostModules.gdw;
+      };
+      # TODO get nix-disco working
+      # FIXME Has no hardware configuration
+      # FIXME Uses local gen user
+      ghl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = hostModules.ghl;
       };
     };
   };
