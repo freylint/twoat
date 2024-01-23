@@ -20,6 +20,10 @@ in
               name = "ClosetBox";
               url = "https://192.168.1.250:8006";
             }
+            {
+              name = "Zabbix";
+              url = "http://localhost/zabbix.php?action=dashboard.view";
+            }
           ];
           extensions = with firefox-addons; [
             ublock-origin
