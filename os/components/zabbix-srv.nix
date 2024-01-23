@@ -10,8 +10,4 @@
       adminAddr = "webmaster@localhost";
     };
   };
-  services.zabbixAgent = {
-    enable = true;
-    server = "localhost";
-  };
 }
