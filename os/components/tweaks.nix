@@ -2,6 +2,8 @@
 
 { environment, pkgs, config, home-manager, ... }:
 {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   home-manager.users.gen = {
     home.packages = with pkgs; [ dconf ];
     dconf.settings = {
