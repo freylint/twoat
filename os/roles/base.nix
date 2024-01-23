@@ -12,17 +12,8 @@ in {
     home-manager.nixosModules.home-manager
     sops-nix.nixosModules.sops
     ../components/bootable.nix
+    ../components/sops.nix
   ];
-
-  # TODO Move sops configuration into module
-  sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    # TODO support multiple users
-    age.keyFile = "/home/gen/.config/sops/age/keys.txt";
-  };
-
-  sops.secrets."users/gen" = {};
 
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
