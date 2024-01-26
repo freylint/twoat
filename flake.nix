@@ -15,7 +15,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, ... }: let 
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: let 
     hostModules = {
       # General purpose desktop workstation
       gdw = [
