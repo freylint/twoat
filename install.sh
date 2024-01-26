@@ -3,10 +3,14 @@
 NIX_EXPER="nix \
             --extra-experimental-features nix-command \
             --extra-experimental-features flakes"
-NIXOS_ANYWHERE="github:nix-community/nixos-anywhere"
+NIXOS_ANYWHERE_URL="github:nix-community/nixos-anywhere"
+alias nixa="${NIX_EXPER} run ${NIXOS_ANYWHERE_URL} --"
 
 case $1 in
   "gdw.vm")
-    ${NIX_EXPER} run ${NIXOS_ANYWHERE} -- --flake .#gdw --vm-test
+    nixa --flake .#gdw --vm-test
+  ;;
+  "gdw.local")
+    nixa --flake .#gdw root@localhost
   ;;
 esac
