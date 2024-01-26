@@ -1,6 +1,5 @@
-{ inputs, lib, ... }: let 
-  inherit (inputs) disko;
-in {
+{ ... }:
+{
   disko.devices = {
     disk.disk1 = {
       device = lib.mkDefault "/dev/nvme0n1";
