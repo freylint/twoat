@@ -28,6 +28,7 @@
             time.timeZone = "America/New_York";
           })
           ./os/machine/gdw.nix
+          ./os/machine/efi.nix
           ./os/roles/base.nix
           ./os/roles/desktop.nix
           ./os/roles/dev.nix

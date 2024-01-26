@@ -1,5 +1,5 @@
-{ inputs, ... }: let 
-  inherit (inupts) disko;
+{ inputs, lib, ... }: let 
+  inherit (inputs) disko;
 in {
   disko.devices = {
     disk.disk1 = {
@@ -29,6 +29,6 @@ in {
           };
         };
       };
-    }
+    };
   };
 }
