@@ -25,7 +25,7 @@ in {
     isNormalUser = true;
     # TODO switch back to sops passwords
     initialPassword = "corecthorsebatterystaple";
-    extraGroups = [ "wheel" "seat" "video" "audio" "libvirtd" ];
+    extraGroups = [ "wheel" "seat" "video" "audio" "libvirtd" "disks" ];
   };
 
   home-manager = {
