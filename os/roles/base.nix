@@ -23,7 +23,8 @@ in {
 
   users.users.gen = {
     isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets."users/gen".path;
+    # TODO switch back to sops passwords
+    initialPassword = "corecthorsebatterystaple";
     extraGroups = [ "wheel" "seat" "video" "audio" "libvirtd" ];
   };
 
