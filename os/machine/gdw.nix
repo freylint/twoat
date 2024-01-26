@@ -14,7 +14,7 @@
 
   fileSystems."/" = {
     device = "/dev/nvme0n1p2";
-    fsType = "f2fs";
+    fsType = "ext4";
   };
 
   fileSystems."/boot" = {
