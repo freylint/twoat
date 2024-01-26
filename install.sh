@@ -13,4 +13,7 @@ case $1 in
   "gdw.local")
     nixa --flake .#gdw root@localhost
   ;;
+  *)
+    echo "Please specify a target configuration and host."
+  ;;
 esac
