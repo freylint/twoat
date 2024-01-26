@@ -18,7 +18,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/nvme0n1p1";
+    device = "/dev/disk/by-partlabel/disk-disk1-esp";
     fsType = "vfat";
   };
 
