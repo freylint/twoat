@@ -13,7 +13,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/nvme0n1p2";
+    device = "/dev/disk/by-partlabel/disk-disk1-root";
     fsType = "ext4";
   };
 
