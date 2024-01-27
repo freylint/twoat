@@ -13,6 +13,9 @@ case $1 in
   "gdw.local")
     nixa --flake .#gdw root@localhost
   ;;
+  "ghl.test")
+    nixa --flake .#ghl root@localhost
+  ;;
   *)
     echo "Please specify a target configuration and host."
   ;;
