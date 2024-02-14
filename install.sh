@@ -16,6 +16,9 @@ case $1 in
   "ghl.local")
     nixa --flake .#ghl root@localhost
   ;;
+  "ghl")
+    nixa --flake .#ghl root@192.168.1.190
+  ;;
   *)
     echo "Please specify a target configuration and host."
   ;;
