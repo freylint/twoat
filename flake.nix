@@ -40,6 +40,8 @@
           networking.hostName = "ghl";
           time.timeZone = "America/New_York";
         })
+        ./os/machine/ghl.nix
+        ./os/machine/efi.nix
         ./os/roles/base.nix
         ./os/components/zabbix-srv.nix
         ./os/components/zabbix-agent.nix
