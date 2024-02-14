@@ -1,8 +1,10 @@
 { config, services, ... } : {
   services.openssh = {
     enable = true;
-    passwordAuthentication = true;
+    settings = {
+      PasswordAuthentication = true;
+    };
   };
 
-  networking.firewall.allowTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
 }
