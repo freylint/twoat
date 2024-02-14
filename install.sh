@@ -13,7 +13,7 @@ case $1 in
   "gdw.local")
     nixa --flake .#gdw root@localhost
   ;;
-  "ghl.test")
+  "ghl.local")
     nixa --flake .#ghl root@localhost
   ;;
   *)
