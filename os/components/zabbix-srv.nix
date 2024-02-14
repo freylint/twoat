@@ -6,8 +6,9 @@
   services.zabbixWeb = {
     enable = true;
     virtualHost = {
-      hostName = "zabbix.localhost";
-      adminAddr = "webmaster@localhost";
+      hostName = "ghl";
+      adminAddr = "lmpriestley@outlook.com";
     };
   };
+  networking.firewall.allowedTCPPorts = [ 80 ];
 }
