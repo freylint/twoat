@@ -2,7 +2,7 @@
 {
   imports = [
     # include NixOS-WSL modules
-    inputs.nixos-wsl
+    inputs.nixos-wsl.modules
   ];
 
   wsl = {

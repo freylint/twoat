@@ -12,3 +12,67 @@ jupyter: python3
 ```{python, echo=FALSE}
 print("Hello, World!")
 ```
+
+---
+
+## NixOS Everywhere: WSL
+
+### The Goal
+
+In my quest to have a
+low maintenance, use anywhere, perfectly reproducible baseline for all my systems,
+I find myself resorting to NixOS.
+It has the uniqe ability to leave it and come back months later and pick up where I left off without major suprises.
+
+For this project the goal is simple. I want a single command script that will set up my:
+
+ - Dev Environment
+ - Communications
+ - Secrets
+
+and if applicable:
+
+ - Platform Specific Shell
+ - Application Configurations
+
+on Windows, only compromized by security, performance, and support.
+I've already achieved this on Linux, using [Disko](https://github.com/nix-community/disko) + [NixOS Anywhere](https://github.com/nix-community/nixos-anywhere) + [NixOS System Flakes](https://www.tweag.io/blog/2020-07-31-nixos-flakes/), but
+it's time to take it to the next level by making the appropriate parts of the config
+work in [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/).
+
+### The Plan
+
+This entire plan hinges on two projects, WSL and NixOS-WSL.
+Integrating these two things together will not be easy, but first I need a way
+to execute PS1 scripts from a Bash Script on windows.
+The steps are:
+
+ 1. [Enable the Windows Features required for WSL](#enabling-wsl2-dependencies)
+ 2. Download the latest NixOS-WSL archive
+ 3. Install NixOS-WSL
+ 4. Initialize NixOS-WSL
+ 5. Copy keys with correct permissions into NixOS-WSL
+ 6. Create a `nix-shell` with git
+ 7. Clone the nixos config into NixOS-WSL
+ 8. Apply the NixOS Config
+
+#### Enabling WSL2 Dependencies
+Installing WSL2 is complicated by the need to enable Windows features.
+Specifically, the ambiguously documented [Virtual Machine Platform](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/) Windows feature.
+Windows being Windows there exists a way to [enable this feature through the CLI](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/enable-or-disable-windows-features-using-dism?view=windows-11),
+specifically:
+
+> Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All
+
+Perfect, now I can just wrap this in a script the requests elevation
+and I'll have the first part done
+
+The first step is simple. This command requires admin priviliges, so I'll need to
+request an admin command prompt:
+
+```ps1
+Start-Process powershell -ArgumentList '-Command', 'echo "Hello, World!"' -Verb RunAs
+```
+
+This will create an administractive shell that echos `Hello, World!`.
+You can't see it, but it works!
