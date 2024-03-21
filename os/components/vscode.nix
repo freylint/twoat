@@ -1,5 +1,12 @@
 { programs, pkgs, ... }:
 {
+
+  imports = [
+    inputs.vscode-server.nixosModules.default
+  ];
+
+  services.vscode-server.enable = true;
+
   home-manager.users.gen = {
     programs.vscode = {
       enable = true;

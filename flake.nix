@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
     sops-nix.url = "github:Mic92/sops-nix";
     disko = {
       url = "github:nix-community/disko";
