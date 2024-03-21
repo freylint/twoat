@@ -14,6 +14,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl.url = github:nix-community/nixos-wsl;
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }: let 
@@ -33,6 +34,11 @@
           ./os/roles/comms.nix
           ./os/components/amdgpu.nix
           ./os/components/zabbix-agent.nix
+      ];
+
+      gws = [
+        ./os/machine/gws.nix
+        ./os/machine/efi.nix
       ];
 
       # General purpose home lab server
@@ -56,6 +62,13 @@
         specialArgs = { inherit inputs; };
         modules = hostModules.gdw;
       };
+
+      gws = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = hostModules.gws;
+      };
+
       # TODO get nix-disco working
       # FIXME Has no hardware configuration
       # FIXME Uses local gen user
