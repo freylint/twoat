@@ -2,4 +2,8 @@
 result/
 result
 **/*.qcow2
+
+# Quatro
 docs/index.ipynb
+docs/index.html
+docs/index_*/
