@@ -1,4 +1,4 @@
-{ programs, pkgs, ... }:
+{ programs, pkgs, inputs, ... }:
 {
 
   imports = [
