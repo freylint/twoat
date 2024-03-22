@@ -16,6 +16,7 @@ I chose NixOS for this task for its ability to:
 - Provide uniform cross platform application and user
 configuration, installation, and updates
 - Automatically revert if a problem is detected
+- Create a cross platform network of controlled hosts
 
 Platform Support:
 
