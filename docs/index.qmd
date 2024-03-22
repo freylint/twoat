@@ -19,10 +19,10 @@ configuration, installation, and updates
 
 Platform Support:
 
-[x] - Linux Desktop
-[x] - Linux Server
-[~] - Windows CLI
-[ ] - MacOS
+- Linux Desktop
+- Linux Server
+- Windows CLI (indev)
+- MacOS (planned)
 
 This is achieved through Nix, NixOS, Nix Anywhere, Disko, and WSL.
 More details will be provided as documentation is improved.
