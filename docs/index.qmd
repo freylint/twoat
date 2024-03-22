@@ -48,7 +48,7 @@ to execute PS1 scripts from a Bash Script on windows.
 The steps are:
 
  1. [Enable the Windows Features required for WSL](#enabling-wsl2-dependencies)
- 2. Download the latest NixOS-WSL archive
+ 2. [Download the latest NixOS-WSL archive](#downloading-nixos-wsl)
  3. Install NixOS-WSL
  4. Initialize NixOS-WSL
  5. Copy keys with correct permissions into NixOS-WSL
@@ -57,6 +57,7 @@ The steps are:
  8. Apply the NixOS Config
 
 #### Enabling WSL2 Dependencies
+
 Installing WSL2 is complicated by the need to enable Windows features.
 Specifically, the ambiguously documented [Virtual Machine Platform](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/) Windows feature.
 Windows being Windows there exists a way to [enable this feature through the CLI](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/enable-or-disable-windows-features-using-dism?view=windows-11),
@@ -67,12 +68,30 @@ specifically:
 Perfect, now I can just wrap this in a script the requests elevation
 and I'll have the first part done
 
-The first step is simple. This command requires admin priviliges, so I'll need to
-request an admin command prompt:
+The first step is simple. This command requires admin priviliges, so I'll need to run it after requesting elevation.
 
 ```ps1
-Start-Process powershell -ArgumentList '-Command', 'echo "Hello, World!"' -Verb RunAs
+Start-Process powershell -ArgumentList '-Command', 'Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All' -NoNewWindow -Verb RunAs
 ```
 
-This will create an administractive shell that echos `Hello, World!`.
-You can't see it, but it works!
+This will spawn an Admin Powershell that enables the feature after requesting admin privileges.
+Save this for for later and start working on the rest of the requirements.
+
+#### Downloading NixOS-WSL
+
+Now that Windows is set up to handle WSL Distros, I need to download the
+the base distro for WSL.
+In this case I'm using [NixOS-WSL](https://github.com/nix-community/NixOS-WSL).
+
+I'd like this script to automatically download the latest unstable release.
+This is non-trivial, so I'll be resorting to the [GitHub Rest API](https://docs.github.com/en/rest?apiVersion=2022-11-28).
+Specifically the [List Repository Tags API](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repository-tags).
+
+Putting the URL together, 
+```ps1
+$repoOwner = "nix-community"
+$repoName = "NixOS-WSL"
+
+# Construct the API URL for the latest release
+$releasesUrl = "https://api.github.com/repos/$repoOwner/$repoName/releases/latest"
+```
