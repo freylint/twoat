@@ -13,10 +13,9 @@ be uniform, maintainable, and portable.
 I chose NixOS for this task for its ability to:
 
 - Be exapndable after being ignored for months
-- Facilitate uniform cross platform application and user
+- Provide uniform cross platform application and user
 configuration, installation, and updates
-- Do this while automatically reverting if a problem is detected
-- Do this with as painless a setup process as possible
+- Automatically revert if a problem is detected
 
 Platform Support:
 
