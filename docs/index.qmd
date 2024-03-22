@@ -7,17 +7,31 @@ format:
 jupyter: python3
 ---
 
-# This is a test
+This is the documentation for Freylint's NixOS configuration.
+A project with the aim to allow my personal software setup to
+be uniform, maintainable, and portable.
+I chose NixOS for this task for its ability to:
 
-```{python, echo=FALSE}
-print("Hello, World!")
-```
+- Be exapndable after being ignored for months
+- Facilitate uniform cross platform application and user
+configuration, installation, and updates
+- Do this while automatically reverting if a problem is detected
+
+Platform Support:
+
+[x] - Linux Desktop
+[x] - Linux Server
+[~] - Windows CLI
+[ ] - MacOS
+
+This is achieved through Nix, NixOS, Nix Anywhere, Disko, and WSL.
+More details will be provided as documentation is improved.
 
 ---
 
-## NixOS Everywhere: WSL
+# NixOS Everywhere: WSL
 
-### The Goal
+## The Goal
 
 In my quest to have a
 low maintenance, use anywhere, perfectly reproducible baseline for all my systems,
@@ -26,37 +40,37 @@ It has the uniqe ability to leave it and come back months later and pick up wher
 
 For this project the goal is simple. I want a single command script that will set up my:
 
- - Dev Environment
- - Communications
- - Secrets
+- Dev Environment
+- Communications
+- Secrets
 
 and if applicable:
 
- - Platform Specific Shell
- - Application Configurations
+- Platform Specific Shell
+- Application Configurations
 
 on Windows, only compromized by security, performance, and support.
 I've already achieved this on Linux, using [Disko](https://github.com/nix-community/disko) + [NixOS Anywhere](https://github.com/nix-community/nixos-anywhere) + [NixOS System Flakes](https://www.tweag.io/blog/2020-07-31-nixos-flakes/), but
 it's time to take it to the next level by making the appropriate parts of the config
 work in [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/).
 
-### The Plan
+## The Plan
 
 This entire plan hinges on two projects, WSL and NixOS-WSL.
 Integrating these two things together will not be easy, but first I need a way
 to execute PS1 scripts from a Bash Script on windows.
 The steps are:
 
- 1. [Enable the Windows Features required for WSL](#enabling-wsl2-dependencies)
- 2. [Download the latest NixOS-WSL archive](#downloading-nixos-wsl)
- 3. Install NixOS-WSL
- 4. Initialize NixOS-WSL
- 5. Copy keys with correct permissions into NixOS-WSL
- 6. Create a `nix-shell` with git
- 7. Clone the nixos config into NixOS-WSL
- 8. Apply the NixOS Config
+1. [Enable the Windows Features required for WSL](#enabling-wsl2-dependencies)
+2. [Download the latest NixOS-WSL archive](#downloading-nixos-wsl)
+3. Install NixOS-WSL
+4. Initialize NixOS-WSL
+5. Copy keys with correct permissions into NixOS-WSL
+6. Create a `nix-shell` with git
+7. Clone the nixos config into NixOS-WSL
+8. Apply the NixOS Config
 
-#### Enabling WSL2 Dependencies
+### Enabling WSL2 Dependencies
 
 Installing WSL2 is complicated by the need to enable Windows features.
 Specifically, the ambiguously documented [Virtual Machine Platform](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/) Windows feature.
@@ -77,7 +91,7 @@ Start-Process powershell -ArgumentList '-Command', 'Dism /online /Enable-Feature
 This will spawn an Admin Powershell that enables the feature after requesting admin privileges.
 Save this for for later and start working on the rest of the requirements.
 
-#### Downloading NixOS-WSL
+### Downloading NixOS-WSL
 
 Now that Windows is set up to handle WSL Distros, I need to download the
 the base distro for WSL.
