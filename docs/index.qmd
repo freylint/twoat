@@ -87,7 +87,7 @@ I'd like this script to automatically download the latest unstable release.
 This is non-trivial, so I'll be resorting to the [GitHub Rest API](https://docs.github.com/en/rest?apiVersion=2022-11-28).
 Specifically the [List Repository Tags API](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repository-tags).
 
-Putting the URL together, 
+I'll start by geting the URL for the REST API I want to call:
 ```ps1
 $repoOwner = "nix-community"
 $repoName = "NixOS-WSL"
