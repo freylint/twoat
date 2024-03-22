@@ -97,22 +97,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="this-is-a-test" class="level1">
-<h1>This is a test</h1>
-<div id="e31fd789" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hello, World!</code></pre>
-</div>
-</div>
+<p>This is the documentation for Freylint’s NixOS configuration. A project with the aim to allow my personal software setup to be uniform, maintainable, and portable. I chose NixOS for this task for its ability to:</p>
+<ul>
+<li>Be exapndable after being ignored for months</li>
+<li>Provide uniform cross platform application and user configuration, installation, and updates</li>
+<li>Automatically revert if a problem is detected</li>
+<li>Create a cross platform network of controlled hosts</li>
+</ul>
+<p>Platform Support:</p>
+<ul>
+<li>Linux Desktop</li>
+<li>Linux Server</li>
+<li>Windows CLI (indev)</li>
+<li>MacOS (planned)</li>
+</ul>
+<p>This is achieved through Nix, NixOS, Nix Anywhere, Disko, and WSL. More details will be provided as documentation is improved.</p>
 <hr>
-<section id="nixos-everywhere-wsl" class="level2">
-<h2 class="anchored" data-anchor-id="nixos-everywhere-wsl">NixOS Everywhere: WSL</h2>
-<section id="the-goal" class="level3">
-<h3 class="anchored" data-anchor-id="the-goal">The Goal</h3>
+<section id="nixos-everywhere-wsl" class="level1">
+<h1>NixOS Everywhere: WSL</h1>
+<section id="the-goal" class="level2">
+<h2 class="anchored" data-anchor-id="the-goal">The Goal</h2>
 <p>In my quest to have a low maintenance, use anywhere, perfectly reproducible baseline for all my systems, I find myself resorting to NixOS. It has the uniqe ability to leave it and come back months later and pick up where I left off without major suprises.</p>
 <p>For this project the goal is simple. I want a single command script that will set up my:</p>
 <ul>
@@ -127,8 +131,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>on Windows, only compromized by security, performance, and support. I’ve already achieved this on Linux, using <a href="https://github.com/nix-community/disko">Disko</a> + <a href="https://github.com/nix-community/nixos-anywhere">NixOS Anywhere</a> + <a href="https://www.tweag.io/blog/2020-07-31-nixos-flakes/">NixOS System Flakes</a>, but it’s time to take it to the next level by making the appropriate parts of the config work in <a href="https://learn.microsoft.com/en-us/windows/wsl/">Windows Subsystem for Linux (WSL)</a>.</p>
 </section>
-<section id="the-plan" class="level3">
-<h3 class="anchored" data-anchor-id="the-plan">The Plan</h3>
+<section id="the-plan" class="level2">
+<h2 class="anchored" data-anchor-id="the-plan">The Plan</h2>
 <p>This entire plan hinges on two projects, WSL and NixOS-WSL. Integrating these two things together will not be easy, but first I need a way to execute PS1 scripts from a Bash Script on windows. The steps are:</p>
 <ol type="1">
 <li><a href="#enabling-wsl2-dependencies">Enable the Windows Features required for WSL</a></li>
@@ -140,28 +144,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Clone the nixos config into NixOS-WSL</li>
 <li>Apply the NixOS Config</li>
 </ol>
-<section id="enabling-wsl2-dependencies" class="level4">
-<h4 class="anchored" data-anchor-id="enabling-wsl2-dependencies">Enabling WSL2 Dependencies</h4>
+<section id="enabling-wsl2-dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="enabling-wsl2-dependencies">Enabling WSL2 Dependencies</h3>
 <p>Installing WSL2 is complicated by the need to enable Windows features. Specifically, the ambiguously documented <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/">Virtual Machine Platform</a> Windows feature. Windows being Windows there exists a way to <a href="https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/enable-or-disable-windows-features-using-dism?view=windows-11">enable this feature through the CLI</a>, specifically:</p>
 <blockquote class="blockquote">
 <p>Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All</p>
 </blockquote>
 <p>Perfect, now I can just wrap this in a script the requests elevation and I’ll have the first part done</p>
 <p>The first step is simple. This command requires admin priviliges, so I’ll need to run it after requesting elevation.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode ps1 code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> powershell <span class="op">-</span>ArgumentList <span class="st">'-Command'</span><span class="op">,</span> <span class="st">'Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All'</span> <span class="op">-</span>NoNewWindow <span class="op">-</span>Verb RunAs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ps1 code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> powershell <span class="op">-</span>ArgumentList <span class="st">'-Command'</span><span class="op">,</span> <span class="st">'Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All'</span> <span class="op">-</span>NoNewWindow <span class="op">-</span>Verb RunAs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will spawn an Admin Powershell that enables the feature after requesting admin privileges. Save this for for later and start working on the rest of the requirements.</p>
 </section>
-<section id="downloading-nixos-wsl" class="level4">
-<h4 class="anchored" data-anchor-id="downloading-nixos-wsl">Downloading NixOS-WSL</h4>
+<section id="downloading-nixos-wsl" class="level3">
+<h3 class="anchored" data-anchor-id="downloading-nixos-wsl">Downloading NixOS-WSL</h3>
 <p>Now that Windows is set up to handle WSL Distros, I need to download the the base distro for WSL. In this case I’m using <a href="https://github.com/nix-community/NixOS-WSL">NixOS-WSL</a>.</p>
 <p>I’d like this script to automatically download the latest unstable release. This is non-trivial, so I’ll be resorting to the <a href="https://docs.github.com/en/rest?apiVersion=2022-11-28">GitHub Rest API</a>. Specifically the <a href="https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repository-tags">List Repository Tags API</a>.</p>
 <p>I’ll start by geting the URL for the REST API I want to call:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode ps1 code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">$repoOwner</span> <span class="op">=</span> <span class="st">"nix-community"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">$repoName</span> <span class="op">=</span> <span class="st">"NixOS-WSL"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the API URL for the latest release</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">$releasesUrl</span> <span class="op">=</span> <span class="st">"https://api.github.com/repos/</span><span class="va">$repoOwner</span><span class="st">/</span><span class="va">$repoName</span><span class="st">/releases/latest"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ps1 code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">$repoOwner</span> <span class="op">=</span> <span class="st">"nix-community"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">$repoName</span> <span class="op">=</span> <span class="st">"NixOS-WSL"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the API URL for the latest release</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">$releasesUrl</span> <span class="op">=</span> <span class="st">"https://api.github.com/repos/</span><span class="va">$repoOwner</span><span class="st">/</span><span class="va">$repoName</span><span class="st">/releases/latest"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 </section>
