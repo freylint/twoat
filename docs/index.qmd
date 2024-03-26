@@ -12,7 +12,7 @@ A project with the aim to allow my personal software setup to
 be uniform, maintainable, and portable.
 I chose NixOS for this task for its ability to:
 
-- Be exapndable after being ignored for months
+- Be exapandable after being ignored for months
 - Provide uniform cross platform application and user
 configuration, installation, and updates
 - Automatically revert if a problem is detected
