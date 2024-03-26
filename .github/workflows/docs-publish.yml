@@ -16,7 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          sparse-checkout: "./docs"
+          sparse-checkout-cone-mode: false
+
+      - name: Move Docs Directory Into Root Folder
+        run: shopt -s dotglob
+          mv docs/* .
+          rm -rf docs/
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -36,3 +45,4 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working_directory: ./docs
