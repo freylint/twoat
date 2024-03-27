@@ -24,8 +24,7 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Move Docs Directory Into Root Folder
-        run: shopt -s dotglob && \
-          mv docs/* . && \
+        run: mv -r docs/* . && \
           rm -rf docs/
 
       - name: Setup Quarto
