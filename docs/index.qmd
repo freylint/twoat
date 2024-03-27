@@ -111,6 +111,10 @@ Doing this requires 4 high level steps:
 
 This requires more than a few lines, so we have to go into code architecture. Don't worry, It's nothing more than a few functions.
 
+```{mermaid}
+flowchart fetch
+```
+
 TODO
 
 I'll start by geting the URL for the REST API I want to call:
