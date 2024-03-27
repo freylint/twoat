@@ -7,3 +7,5 @@ result
 docs/index.ipynb
 docs/index.html
 docs/index_*/
+_*/
+**/.quarto/
