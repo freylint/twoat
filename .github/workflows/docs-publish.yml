@@ -17,15 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          sparse-checkout: "./docs"
-          sparse-checkout-cone-mode: false
-
-      - name: Move Docs Directory Into Root Folder
-        run: mv -r docs/* . && \
-          rm -rf docs/
+          path: docs
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
