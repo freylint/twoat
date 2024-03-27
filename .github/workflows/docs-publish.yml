@@ -13,7 +13,6 @@ permissions:
 
 jobs:
   docs-render-publish:
-    # FIXME: This is a workaround for unexpected behavior in the publish action.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
