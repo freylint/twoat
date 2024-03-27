@@ -110,3 +110,5 @@ $repoName = "NixOS-WSL"
 # Construct the API URL for the latest release
 $releasesUrl = "https://api.github.com/repos/$repoOwner/$repoName/releases/latest"
 ```
+
+### Installing base NixOS-WSL Image
