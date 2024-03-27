@@ -113,4 +113,7 @@ $releasesUrl = "https://api.github.com/repos/$repoOwner/$repoName/releases/lates
 
 Then I'll get the paths to save the archive and its checksum:
 
+```ps1
+```
+
 ### Installing base NixOS-WSL Image
