@@ -102,6 +102,17 @@ I'd like this script to automatically download the latest unstable release.
 This is non-trivial, so I'll be resorting to the [GitHub Rest API](https://docs.github.com/en/rest?apiVersion=2022-11-28).
 Specifically the [List Repository Tags API](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repository-tags).
 
+Doing this requires 4 high level steps:
+
+1. Get the download URL of the latest release of NixOS-WSL
+2. Download NixOS-WSL
+3. Download the checksum of NixOS-WSL
+4. Verify the NixOS-WSL download using the checksum
+
+This requires more than a few lines, so we have to go into code architecture. Don't worry, It's nothing more than a few functions.
+
+TODO
+
 I'll start by geting the URL for the REST API I want to call:
 ```ps1
 $repoOwner = "nix-community"
