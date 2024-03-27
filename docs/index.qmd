@@ -7,107 +7,84 @@ format:
 jupyter: python3
 ---
 
-This is the documentation for Freylint's NixOS configuration.
-A project with the aim to allow my personal software setup to
-be uniform, maintainable, and portable.
-I chose NixOS for this task for its ability to:
+This is the documentation for Freylint's NixOS configuration. A project with the aim to allow my personal software setup to be uniform, maintainable, and portable. I chose NixOS for this task for its ability to:
 
-- Be exapandable after being ignored for months
-- Provide uniform cross platform application and user
-configuration, installation, and updates
-- Automatically revert if a problem is detected
-- Create a cross platform network of controlled hosts
+-   Be expandable after being ignored for months
+-   Provide uniform cross platform application and user configuration, installation, and updates
+-   Automatically revert if a problem is detected
+-   Create a cross platform network of controlled hosts
 
 Platform Support:
 
-- Linux Desktop
-- Linux Server
-- Windows CLI (indev)
-- MacOS (planned)
+-   Linux Desktop
+-   Linux Server
+-   Windows CLI (indev)
+-   MacOS (planned)
 
-This is achieved through Nix, NixOS, Nix Anywhere, Disko, and WSL.
-More details will be provided as documentation is improved.
+This is achieved through Nix, NixOS, Nix Anywhere, Disko, and WSL. More details will be provided as documentation is improved.
 
----
+------------------------------------------------------------------------
 
 # NixOS Everywhere: WSL
 
 ## The Goal
 
-In my quest to have a
-low maintenance, use anywhere, perfectly reproducible baseline for all my systems,
-I find myself resorting to NixOS.
-It has the uniqe ability to leave it and come back months later and pick up where I left off without major suprises.
+In my quest to have a low maintenance, use anywhere, perfectly reproducible baseline for all my systems, I find myself resorting to NixOS. It has the uniqe ability to leave it and come back months later and pick up where I left off without major suprises.
 
 For this project the goal is simple. I want a single command script that will set up my:
 
-- Dev Environment
-- Communications
-- Secrets
+-   Dev Environment
+-   Communications
+-   Secrets
 
 and if applicable:
 
-- Platform Specific Shell
-- Application Configurations
+-   Platform Specific Shell
+-   Application Configurations
 
-on Windows, only compromized by security, performance, and support.
-I've already achieved this on Linux, using [Disko](https://github.com/nix-community/disko) + [NixOS Anywhere](https://github.com/nix-community/nixos-anywhere) + [NixOS System Flakes](https://www.tweag.io/blog/2020-07-31-nixos-flakes/), but
-it's time to take it to the next level by making the appropriate parts of the config
-work in [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/).
+on Windows, only compromised by security, performance, and support. I've already achieved this on Linux, using [Disko](https://github.com/nix-community/disko) + [NixOS Anywhere](https://github.com/nix-community/nixos-anywhere) + [NixOS System Flakes](https://www.tweag.io/blog/2020-07-31-nixos-flakes/), but it's time to take it to the next level by making the appropriate parts of the config work in [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/).
 
 ## The Plan
 
-This entire plan hinges on two projects, WSL and NixOS-WSL.
-Integrating these two things together will not be easy, but first I need a way
-to execute PS1 scripts from a Bash Script on windows.
-The steps are:
+This entire plan hinges on two projects, WSL and NixOS-WSL. Integrating these two things together will not be easy, but first I need a way to execute PS1 scripts from a Bash Script on windows. The steps are:
 
-1. [Enable the Windows Features required for WSL](#enabling-wsl2-dependencies)
-2. [Download the latest NixOS-WSL archive](#downloading-nixos-wsl)
-3. Install NixOS-WSL
-4. Initialize NixOS-WSL
-5. Copy keys with correct permissions into NixOS-WSL
-6. Create a `nix-shell` with git
-7. Clone the nixos config into NixOS-WSL
-8. Apply the NixOS Config
+1.  [Enable the Windows Features required for WSL](#enabling-wsl2-dependencies)
+2.  [Download the latest NixOS-WSL archive](#downloading-nixos-wsl)
+3.  Install NixOS-WSL
+4.  Initialize NixOS-WSL
+5.  Copy keys with correct permissions into NixOS-WSL
+6.  Create a `nix-shell` with git
+7.  Clone the NixOS config into NixOS-WSL
+8.  Apply the NixOS config
 
-### Enabling WSL2 Dependencies
+### Enabling WSL2 Dependencies {#enabling-wsl2-dependencies}
 
-Installing WSL2 is complicated by the need to enable Windows features.
-Specifically, the ambiguously documented [Virtual Machine Platform](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/) Windows feature.
-Windows being Windows there exists a way to [enable this feature through the CLI](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/enable-or-disable-windows-features-using-dism?view=windows-11),
-specifically:
+Installing WSL2 is complicated by the need to enable Windows features. Specifically, the ambiguously documented [Virtual Machine Platform](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/) Windows feature. Windows being Windows there exists a way to [enable this feature through the CLI](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/enable-or-disable-windows-features-using-dism?view=windows-11), specifically:
 
 > Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All
 
-Perfect, now I can just wrap this in a script the requests elevation
-and I'll have the first part done
+Perfect, now I can just wrap this in a script the requests elevation and I'll have the first part done
 
-The first step is simple. This command requires admin priviliges, so I'll need to run it after requesting elevation.
+The first step is simple. This command requires admin privileges, so I'll need to run it after requesting elevation.
 
-```ps1
+``` ps1
 Start-Process powershell -ArgumentList '-Command', 'Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All' -NoNewWindow -Verb RunAs
 ```
 
-This will spawn an Admin Powershell that enables the feature after requesting admin privileges.
-Save this for for later and start working on the rest of the requirements.
+This will spawn an Admin Powershell that enables the feature after requesting admin privileges. Save this for for later and start working on the rest of the requirements.
 
-### Downloading NixOS-WSL
+### Downloading NixOS-WSL {#downloading-nixos-wsl}
 
-Now that Windows is set up to handle WSL Distros, I need to download the
-the base distro for WSL.
-In this case I'm using [NixOS-WSL](https://github.com/nix-community/NixOS-WSL).
+Now that Windows is set up to handle WSL Distros, I need to download the the base distro for WSL. In this case I'm using [NixOS-WSL](https://github.com/nix-community/NixOS-WSL).
 
-I'd like this script to automatically download the latest unstable release.
-This is non-trivial, so I'll be resorting to the [GitHub Rest API](https://docs.github.com/en/rest?apiVersion=2022-11-28).
-Specifically the [List Repository Tags API](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repository-tags).
+I'd like this script to automatically download the latest unstable release. This is non-trivial, so I'll be resorting to the [GitHub Rest API](https://docs.github.com/en/rest?apiVersion=2022-11-28). Specifically the [List Repository Tags API](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repository-tags).
 
 Doing this requires 4 high level steps:
 
-1. Get the download URL of the latest release of NixOS-WSL
-2. Download NixOS-WSL
-3. Download the checksum of NixOS-WSL
-4. Verify the NixOS-WSL download using the checksum
+1.  Get the download URL of the latest release of NixOS-WSL
+2.  Download NixOS-WSL
+3.  Download the checksum of NixOS-WSL
+4.  Verify the NixOS-WSL download using the checksum
 
 This requires more than a few lines, so we have to go into code architecture. Don't worry, It's nothing more than a few functions.
 
@@ -117,8 +94,9 @@ flowchart fetch
 
 TODO
 
-I'll start by geting the URL for the REST API I want to call:
-```ps1
+I'll start by getting the URL for the REST API I want to call:
+
+``` ps1
 $repoOwner = "nix-community"
 $repoName = "NixOS-WSL"
 
@@ -128,7 +106,7 @@ $releasesUrl = "https://api.github.com/repos/$repoOwner/$repoName/releases/lates
 
 Then I'll get the paths to save the archive and its checksum:
 
-```ps1
+``` ps1
 ```
 
 ### Installing base NixOS-WSL Image
