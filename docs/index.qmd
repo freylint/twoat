@@ -3,7 +3,6 @@ title: "Freylint's Nixconfig Documentation"
 format:
   html:
     code-fold: true
-    css: dracula.css
 jupyter: python3
 ---
 
