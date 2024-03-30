@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Freylint’s Nixconfig Documentation</title>
+<title>Docs - Freylint’s Nixconfig Documentation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,25 +57,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
-<script src="index_files/libs/quarto-html/quarto.js"></script>
-<script src="index_files/libs/quarto-html/popper.min.js"></script>
-<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="index_files/libs/quarto-html/anchor.min.js"></script>
-<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
-<link rel="stylesheet" href="dracula.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body class="fullcontent">
+<body class="nav-fixed">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Docs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">about.qmd</span></li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#nixos-everywhere-wsl" id="toc-nixos-everywhere-wsl" class="nav-link active" data-scroll-target="#nixos-everywhere-wsl">NixOS Everywhere: WSL</a>
+  <ul class="collapse">
+  <li><a href="#the-goal" id="toc-the-goal" class="nav-link" data-scroll-target="#the-goal">The Goal</a></li>
+  <li><a href="#the-plan" id="toc-the-plan" class="nav-link" data-scroll-target="#the-plan">The Plan</a>
+  <ul class="collapse">
+  <li><a href="#enabling-wsl2-dependencies" id="toc-enabling-wsl2-dependencies" class="nav-link" data-scroll-target="#enabling-wsl2-dependencies">Enabling WSL2 Dependencies</a></li>
+  <li><a href="#downloading-nixos-wsl" id="toc-downloading-nixos-wsl" class="nav-link" data-scroll-target="#downloading-nixos-wsl">Downloading NixOS-WSL</a></li>
+  <li><a href="#installing-base-nixos-wsl-image" id="toc-installing-base-nixos-wsl-image" class="nav-link" data-scroll-target="#installing-base-nixos-wsl-image">Installing base NixOS-WSL Image</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -99,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>This is the documentation for Freylint’s NixOS configuration. A project with the aim to allow my personal software setup to be uniform, maintainable, and portable. I chose NixOS for this task for its ability to:</p>
 <ul>
-<li>Be exapndable after being ignored for months</li>
+<li>Be expandable after being ignored for months</li>
 <li>Provide uniform cross platform application and user configuration, installation, and updates</li>
 <li>Automatically revert if a problem is detected</li>
 <li>Create a cross platform network of controlled hosts</li>
@@ -129,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Platform Specific Shell</li>
 <li>Application Configurations</li>
 </ul>
-<p>on Windows, only compromized by security, performance, and support. I’ve already achieved this on Linux, using <a href="https://github.com/nix-community/disko">Disko</a> + <a href="https://github.com/nix-community/nixos-anywhere">NixOS Anywhere</a> + <a href="https://www.tweag.io/blog/2020-07-31-nixos-flakes/">NixOS System Flakes</a>, but it’s time to take it to the next level by making the appropriate parts of the config work in <a href="https://learn.microsoft.com/en-us/windows/wsl/">Windows Subsystem for Linux (WSL)</a>.</p>
+<p>on Windows, only compromised by security, performance, and support. I’ve already achieved this on Linux, using <a href="https://github.com/nix-community/disko">Disko</a> + <a href="https://github.com/nix-community/nixos-anywhere">NixOS Anywhere</a> + <a href="https://www.tweag.io/blog/2020-07-31-nixos-flakes/">NixOS System Flakes</a>, but it’s time to take it to the next level by making the appropriate parts of the config work in <a href="https://learn.microsoft.com/en-us/windows/wsl/">Windows Subsystem for Linux (WSL)</a>.</p>
 </section>
 <section id="the-plan" class="level2">
 <h2 class="anchored" data-anchor-id="the-plan">The Plan</h2>
@@ -141,8 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Initialize NixOS-WSL</li>
 <li>Copy keys with correct permissions into NixOS-WSL</li>
 <li>Create a <code>nix-shell</code> with git</li>
-<li>Clone the nixos config into NixOS-WSL</li>
-<li>Apply the NixOS Config</li>
+<li>Clone the NixOS config into NixOS-WSL</li>
+<li>Apply the NixOS config</li>
 </ol>
 <section id="enabling-wsl2-dependencies" class="level3">
 <h3 class="anchored" data-anchor-id="enabling-wsl2-dependencies">Enabling WSL2 Dependencies</h3>
@@ -151,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All</p>
 </blockquote>
 <p>Perfect, now I can just wrap this in a script the requests elevation and I’ll have the first part done</p>
-<p>The first step is simple. This command requires admin priviliges, so I’ll need to run it after requesting elevation.</p>
+<p>The first step is simple. This command requires admin privileges, so I’ll need to run it after requesting elevation.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode ps1 code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> powershell <span class="op">-</span>ArgumentList <span class="st">'-Command'</span><span class="op">,</span> <span class="st">'Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All'</span> <span class="op">-</span>NoNewWindow <span class="op">-</span>Verb RunAs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will spawn an Admin Powershell that enables the feature after requesting admin privileges. Save this for for later and start working on the rest of the requirements.</p>
 </section>
@@ -159,18 +244,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="downloading-nixos-wsl">Downloading NixOS-WSL</h3>
 <p>Now that Windows is set up to handle WSL Distros, I need to download the the base distro for WSL. In this case I’m using <a href="https://github.com/nix-community/NixOS-WSL">NixOS-WSL</a>.</p>
 <p>I’d like this script to automatically download the latest unstable release. This is non-trivial, so I’ll be resorting to the <a href="https://docs.github.com/en/rest?apiVersion=2022-11-28">GitHub Rest API</a>. Specifically the <a href="https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repository-tags">List Repository Tags API</a>.</p>
-<p>I’ll start by geting the URL for the REST API I want to call:</p>
+<p>Doing this requires 4 high level steps:</p>
+<ol type="1">
+<li>Get the download URL of the latest release of NixOS-WSL</li>
+<li>Download NixOS-WSL</li>
+<li>Download the checksum of NixOS-WSL</li>
+<li>Verify the NixOS-WSL download using the checksum</li>
+</ol>
+<p>This requires more than a few lines, so we have to go into code architecture. Don’t worry, It’s nothing more than a few functions.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart fetch
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>TODO</p>
+<p>I’ll start by getting the URL for the REST API I want to call:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode ps1 code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">$repoOwner</span> <span class="op">=</span> <span class="st">"nix-community"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">$repoName</span> <span class="op">=</span> <span class="st">"NixOS-WSL"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the API URL for the latest release</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">$releasesUrl</span> <span class="op">=</span> <span class="st">"https://api.github.com/repos/</span><span class="va">$repoOwner</span><span class="st">/</span><span class="va">$repoName</span><span class="st">/releases/latest"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then I’ll get the paths to save the archive and its checksum:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ps1 code-with-copy"><code class="sourceCode powershell"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="installing-base-nixos-wsl-image" class="level3">
+<h3 class="anchored" data-anchor-id="installing-base-nixos-wsl-image">Installing base NixOS-WSL Image</h3>
+
+
 </section>
 </section>
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -252,7 +364,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/freylint\.github\.io\/nixconfig\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
