@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://freylint.github.io/nixconfig/projects.html</loc>
+    <lastmod>2024-04-01T00:41:12.813Z</lastmod>
+  </url>
+  <url>
     <loc>https://freylint.github.io/nixconfig/index.html</loc>
-    <lastmod>2024-03-27T11:17:21.834Z</lastmod>
+    <lastmod>2024-04-01T00:21:15.793Z</lastmod>
+  </url>
+  <url>
+    <loc>https://freylint.github.io/nixconfig/notes.html</loc>
+    <lastmod>2024-04-01T00:21:49.505Z</lastmod>
   </url>
 </urlset>

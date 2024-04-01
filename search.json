@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "gantt\n    dateFormat  YYYY-MM-DD\n    title Project Schedule\n\n    section Tasks\n    Move Index Into Projects :a1, 2022-01-01, 30d\n    Planning :a2, 2022-01-01, 30d\n\n    section Milestones\n    Milestone 1      :2022-01-15, 1d\n    Milestone 2      :2022-02-15, 1d\n    Milestone 3      :2022-03-15, 1d"
+  },
+  {
+    "objectID": "projects.html#personal-nixos-configuration",
+    "href": "projects.html#personal-nixos-configuration",
+    "title": "Projects",
+    "section": "",
+    "text": "gantt\n    dateFormat  YYYY-MM-DD\n    title Project Schedule\n\n    section Tasks\n    Move Index Into Projects :a1, 2022-01-01, 30d\n    Planning :a2, 2022-01-01, 30d\n\n    section Milestones\n    Milestone 1      :2022-01-15, 1d\n    Milestone 2      :2022-02-15, 1d\n    Milestone 3      :2022-03-15, 1d"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Freylint’s Nixconfig Documentation",
@@ -19,5 +33,12 @@
     "title": "Freylint’s Nixconfig Documentation",
     "section": "The Plan",
     "text": "The Plan\nThis entire plan hinges on two projects, WSL and NixOS-WSL. Integrating these two things together will not be easy, but first I need a way to execute PS1 scripts from a Bash Script on windows. The steps are:\n\nEnable the Windows Features required for WSL\nDownload the latest NixOS-WSL archive\nInstall NixOS-WSL\nInitialize NixOS-WSL\nCopy keys with correct permissions into NixOS-WSL\nCreate a nix-shell with git\nClone the NixOS config into NixOS-WSL\nApply the NixOS config\n\n\nEnabling WSL2 Dependencies\nInstalling WSL2 is complicated by the need to enable Windows features. Specifically, the ambiguously documented Virtual Machine Platform Windows feature. Windows being Windows there exists a way to enable this feature through the CLI, specifically:\n\nDism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All\n\nPerfect, now I can just wrap this in a script the requests elevation and I’ll have the first part done\nThe first step is simple. This command requires admin privileges, so I’ll need to run it after requesting elevation.\nStart-Process powershell -ArgumentList '-Command', 'Dism /online /Enable-Feature /FeatureName:VirtualMachinePlatform /All' -NoNewWindow -Verb RunAs\nThis will spawn an Admin Powershell that enables the feature after requesting admin privileges. Save this for for later and start working on the rest of the requirements.\n\n\nDownloading NixOS-WSL\nNow that Windows is set up to handle WSL Distros, I need to download the the base distro for WSL. In this case I’m using NixOS-WSL.\nI’d like this script to automatically download the latest unstable release. This is non-trivial, so I’ll be resorting to the GitHub Rest API. Specifically the List Repository Tags API.\nDoing this requires 4 high level steps:\n\nGet the download URL of the latest release of NixOS-WSL\nDownload NixOS-WSL\nDownload the checksum of NixOS-WSL\nVerify the NixOS-WSL download using the checksum\n\nThis requires more than a few lines, so we have to go into code architecture. Don’t worry, It’s nothing more than a few functions.\n\n\n\n\n\nflowchart fetch\n\n\n\n\n\n\nTODO\nI’ll start by getting the URL for the REST API I want to call:\n$repoOwner = \"nix-community\"\n$repoName = \"NixOS-WSL\"\n\n# Construct the API URL for the latest release\n$releasesUrl = \"https://api.github.com/repos/$repoOwner/$repoName/releases/latest\"\nThen I’ll get the paths to save the archive and its checksum:\n\n\n\nInstalling base NixOS-WSL Image"
+  },
+  {
+    "objectID": "notes.html",
+    "href": "notes.html",
+    "title": "Notes",
+    "section": "",
+    "text": "Notes"
   }
 ]
