@@ -1,0 +1,20 @@
+# Projects
+
+## Personal Nixos Configuration
+
+### WSL Support
+```{mermaid}
+
+gantt
+    dateFormat  YYYY-MM-DD
+    title Project Schedule
+
+    section Tasks
+    Move Index Into Projects :a1, 2022-01-01, 30d
+    Planning :a2, 2022-01-01, 30d
+
+    section Milestones
+    Milestone 1      :2022-01-15, 1d
+    Milestone 2      :2022-02-15, 1d
+    Milestone 3      :2022-03-15, 1d
+```

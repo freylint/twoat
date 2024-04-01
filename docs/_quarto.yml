@@ -7,12 +7,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: notes.qmd
+        text: notes
+      - href: projects.qmd
+        text: projects
 
 format:
   html:
-    theme: cosmo
-    css: style.css
+    theme: cyborg
     toc: true
 
 
