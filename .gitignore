@@ -7,5 +7,6 @@ result
 docs/index.ipynb
 docs/index.html
 docs/index_*/
+docs/.gitignore/
 _*/
 **/.quarto/
