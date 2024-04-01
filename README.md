@@ -1,4 +1,4 @@
-# Personal Nix Configuration
+# TWOAT: The Technical Workflow Operations and Analysis Toolkit
 
 Hello! You've stumble upon my current nixos configuration.
 This is a project which I currently use to maintain my
