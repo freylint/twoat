@@ -12,18 +12,30 @@ flowchart
   prof[Professional Life]
   pers[Personal Life]
 
+  inv[Inventory Management]
+
+  df[Dwarf Fortress]
+
   me -->|has fun with| pers
   me -->|works with| prof
 
   prof --> automation & repair & communication & management
+
+  automation --> nix
+
+  repair --> Windows & MacOS & Mobile
   
-  pers --> hobbies & interests & habits
+  pers --> hobbies & interests
 
-  hobbies --> gaming & ttrpgs & reading & media
+  hobbies -->|enjoys| gaming & ttrpg & reading & media
 
-  interests --> osint & economics & inventory & psychology
+  ttrpg -->|consists of| dnd & daggerheart
 
+  gaming -->|plays| bg3 & dfort
 
+  bg3 -->|based on| dnd
+
+  interests --> osint & economics & inv & psychology
 ```
 
 This is the documentation for Freylint's NixOS configuration. A project with the aim to allow my personal software setup to be uniform, maintainable, and portable. I chose NixOS for this task for its ability to:
