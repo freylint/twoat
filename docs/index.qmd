@@ -12,9 +12,18 @@ flowchart
   prof[Professional Life]
   pers[Personal Life]
 
-  me-->|has fun with|pers
-  me-->|works with|prof
+  me -->|has fun with| pers
+  me -->|works with| prof
+
+  prof --> automation & repair & communication & management
   
+  pers --> hobbies & interests & habits
+
+  hobbies --> gaming & ttrpgs & reading & media
+
+  interests --> osint & economics & inventory & psychology
+
+
 ```
 
 This is the documentation for Freylint's NixOS configuration. A project with the aim to allow my personal software setup to be uniform, maintainable, and portable. I chose NixOS for this task for its ability to:
