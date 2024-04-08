@@ -6,6 +6,17 @@ format:
 jupyter: python3
 ---
 
+```{mermaid}
+flowchart
+  me[Lucas Priestley]
+  prof[Professional Life]
+  pers[Personal Life]
+
+  me-->|has fun with|pers
+  me-->|works with|prof
+  
+```
+
 This is the documentation for Freylint's NixOS configuration. A project with the aim to allow my personal software setup to be uniform, maintainable, and portable. I chose NixOS for this task for its ability to:
 
 -   Be expandable after being ignored for months
