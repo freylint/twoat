@@ -6,13 +6,14 @@
   ];
 
   services.vscode-server.enable = true;
+  virtualisation.docker.enable = true;
 
   home-manager.users.gen = {
     programs.vscode = {
       enable = true;
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
-      mutableExtensionsDir = false;
+      mutableExtensionsDir = true;
 
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
@@ -21,6 +22,7 @@
         github.copilot-chat
         piousdeer.adwaita-theme
         mechatroner.rainbow-csv
+        ms-vscode-remote.remote-containers
         editorconfig.editorconfig
         vscode-icons-team.vscode-icons
       ];
