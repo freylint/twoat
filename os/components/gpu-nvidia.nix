@@ -24,9 +24,9 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    amdvlk
-  ];
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   services.xserver = {
     enable = true;
