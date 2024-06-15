@@ -22,6 +22,7 @@
         piousdeer.adwaita-theme
         mechatroner.rainbow-csv
         editorconfig.editorconfig
+        vscode-icons-team.vscode-icons
       ];
 
       userSettings = {
@@ -32,7 +33,7 @@
         "workbench.preferredDarkColorTheme" = "Adwaita-dark";
         "workbench.preferredLightColorTheme" = "Adwaita-light";
         "workbench.productIconTheme" = "Adwaita";
-        "workbench.iconTheme" = "Adwaita";
+        "workbench.iconTheme" = "vscode-icons";
         "workbench.tree.indent" = 10;
 
         "editor.fontFamily" = "Fira Code";
