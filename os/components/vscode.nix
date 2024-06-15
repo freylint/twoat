@@ -46,9 +46,9 @@
         "console.fontLigatures" = true;
         "console.fontSize" = 13;
 
-        "git.confirmSync": false
+        "git.confirmSync" = false;
 
-        "vsicons.dontShowNewVersionMessage": true
+        "vsicons.dontShowNewVersionMessage" = true;
       };
     };
   };
