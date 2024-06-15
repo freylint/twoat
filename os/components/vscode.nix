@@ -45,6 +45,8 @@
         "console.fontFamily" = "Fira Code";
         "console.fontLigatures" = true;
         "console.fontSize" = 13;
+
+        "vsicons.dontShowNewVersionMessage": true
       };
     };
   };
