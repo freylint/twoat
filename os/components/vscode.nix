@@ -25,6 +25,7 @@
         ms-vscode-remote.remote-containers
         editorconfig.editorconfig
         vscode-icons-team.vscode-icons
+        ms-vscode.cpptools
       ];
 
       userSettings = {
@@ -51,6 +52,7 @@
         "git.confirmSync" = false;
 
         "vsicons.dontShowNewVersionMessage" = true;
+        "extensions.ignoreRecommendations" = true;
       };
     };
   };
