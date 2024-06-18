@@ -4,10 +4,10 @@
     programs = {
       git = {
         enable = true;
-        userName = "Lucas Priestley";
-        userEmail = "lmpriestley@outlook.com";
+        userName = "lmpriestley";
+        userEmail = "lucas@freyground.com";
         signing = {
-          key = null;
+          key = "28F37DF3674BF7D0";
           signByDefault = true;
         };
       };
