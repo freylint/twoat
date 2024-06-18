@@ -6,6 +6,10 @@
         enable = true;
         userName = "Lucas Priestley";
         userEmail = "lmpriestley@outlook.com";
+        signing = {
+          key = null;
+          signByDefault = true;
+        };
       };
     };
   };
