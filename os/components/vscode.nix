@@ -8,6 +8,11 @@
   services.vscode-server.enable = true;
   virtualisation.docker.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    docker-compose  
+    appimage-run
+  ];
+
   home-manager.users.gen = {
     programs.vscode = {
       enable = true;
