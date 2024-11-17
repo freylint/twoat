@@ -33,7 +33,6 @@
           ./os/roles/games.nix
           ./os/roles/comms.nix
           ./os/components/gpu-nvidia.nix
-          ./os/components/zabbix-agent.nix
       ];
 
       gws = [

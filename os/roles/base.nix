@@ -6,14 +6,13 @@ in {
     config.allowUnfree = true;
     overlays = [ nur.overlay ];
   };
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   imports = [
     home-manager.nixosModules.home-manager
     sops-nix.nixosModules.sops
     disko.nixosModules.disko
     ../components/bootable.nix
-    ../components/sops.nix
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -31,7 +30,7 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.gen.home.stateVersion = "23.11";
+    users.gen.home.stateVersion = "24.05";
     sharedModules = [
       sops-nix.homeManagerModules.sops
     ];
